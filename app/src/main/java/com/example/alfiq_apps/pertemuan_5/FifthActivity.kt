@@ -1,5 +1,6 @@
 package com.example.alfiq_apps.pertemuan_5
 
+import android.content.Intent // Import Intent untuk pindah halaman
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,18 +17,18 @@ class FifthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge() // Menambahkan kembali dari bawaan aslinya
 
-        // Cukup gunakan binding untuk menampilkan layout
+        // Gunakan binding untuk menampilkan layout
         binding = ActivityFifthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Kode bawaan Android Studio untuk padding layar (Biarkan saja)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        // KODE DIPERBAIKI: Menggunakan binding.root agar tidak Force Close
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 
         // Konfigurasi Toolbar
         setSupportActionBar(binding.toolbar)
@@ -37,7 +38,17 @@ class FifthActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-    }
+
+        // ==========================================
+        // TAMBAHKAN FUNGSI KLIK TOMBOL DI SINI
+        // ==========================================
+        binding.btnWebView.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, WebViewActivity::class.java)
+            startActivity(intent)
+        }
+        // ==========================================
+    } // <--- BATAS AKHIR onCreate
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
