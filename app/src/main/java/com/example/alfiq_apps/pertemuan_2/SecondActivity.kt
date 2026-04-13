@@ -1,37 +1,51 @@
-
 package com.example.alfiq_apps.pertemuan_2
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.alfiq_apps.R
+import com.example.alfiq_apps.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_second)
+
+        // Inisialisasi View Binding
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Mengatur padding agar tidak tertutup sistem (status bar/navigasi)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Inisialisasi komponen
-        val inputNama: EditText = findViewById(R.id.inputNama)
-        val btnSubmit: Button = findViewById(R.id.btnSubmit)
 
-        btnSubmit.setOnClickListener {
-            //Mengambil value dari inputNama dan menampilkan di Logcat
-            val nama = inputNama.text
-            Log.e("Klik btnSubmit","Tombol berhasil di tekan. Isi dari inputNama = $nama")
+        // --- KONFIGURASI TOOLBAR (Sesuai Modul) ---
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Activity Second"
+            subtitle = "Ini adalah subtitle"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+    }
 
-            Toast.makeText(this, "Anda telah melakukan klik pada tombol Submit", Toast.LENGTH_SHORT).show()
+    // --- FUNGSI AGAR TOMBOL BACK BISA DIKLIK ---
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Kembali ke halaman sebelumnya (Stack Activity)
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

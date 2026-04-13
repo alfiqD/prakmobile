@@ -3,6 +3,7 @@ package com.example.alfiq_apps.pertemuan_4
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +28,16 @@ class FourthActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Konfigurasi Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Activity Fourth"
+            subtitle = "Ini adalah subtitle"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
         binding.btnShowAlertDialog.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
@@ -62,6 +73,16 @@ class FourthActivity : AppCompatActivity() {
             Log.i("== onCreate ==", "{nama_activity} dibuat pertama kali")
         }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 override fun onStart() {
     super.onStart()
     Log.e("== onStart ==", "onStart: {nama_activity} terlihat di layar")
@@ -72,4 +93,6 @@ override fun onDestroy() {
     Log.e("== onDestroy ==", "{nama_activity} dihapus dari stack")
 }
     }
+
+
 

@@ -35,9 +35,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="203dp"
-        android:layout_height="235dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="181dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/lgohp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/trispacefont"
         android:text="@string/halaman"
         android:textSize="20dp"
@@ -56,5 +56,16 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:subtitleTextColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
