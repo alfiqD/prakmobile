@@ -36,6 +36,18 @@ class WebViewActivity : AppCompatActivity() {
         // 3. KONFIGURASI WEBVIEW
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.javaScriptEnabled = true
+
+        binding.webView.webChromeClient = object : android.webkit.WebChromeClient() {
+            override fun onProgressChanged(view: android.webkit.WebView?, newProgress: Int) {
+                binding.progressBar.progress = newProgress
+                if (newProgress == 100) {
+                    binding.progressBar.visibility = android.view.View.GONE
+                } else {
+                    binding.progressBar.visibility = android.view.View.VISIBLE
+                }
+            }
+        }
+
         binding.webView.loadUrl("https://merdeka.com")
 
         // 4. ANIMASI HIDE/SHOW TOOLBAR SAAT SCROLL
