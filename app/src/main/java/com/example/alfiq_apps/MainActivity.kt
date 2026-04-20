@@ -57,9 +57,6 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
 
-
-
-
                 .setNegativeButton("Batal") { dialog, _ ->
                     dialog.dismiss()
                 }
