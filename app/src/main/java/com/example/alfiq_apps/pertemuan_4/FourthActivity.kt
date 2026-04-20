@@ -57,7 +57,7 @@ class FourthActivity : AppCompatActivity() {
             startActivity(intent)
 
             val nama = intent.getStringExtra("nama")
-            val asal = intent.getStringExtra("asla")
+            val asal = intent.getStringExtra("asal")
             val umur = intent.getIntExtra("umur", 0)
             Log.i("Data Intent", "Nama: $nama , Usia: $umur, Asal: $asal")
 

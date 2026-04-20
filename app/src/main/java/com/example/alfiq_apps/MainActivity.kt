@@ -2,6 +2,7 @@ package com.example.alfiq_apps
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,6 +11,8 @@ import com.example.alfiq_apps.databinding.ActivityFourthBinding
 import com.example.alfiq_apps.databinding.ActivityMainBinding
 import com.example.alfiq_apps.databinding.ActivityThirdBinding
 import com.example.alfiq_apps.pertemuan_4.FourthActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.core.content.edit
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        //Kode ini harus selalu dipanggil saat butuh akses "user_pref"
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+
         binding.btnToFourth.setOnClickListener {
             val intent = Intent(this, FourthActivity::class.java)
             startActivity(intent)
@@ -34,6 +40,30 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("umur", 25)
 
             startActivity(intent)
+        }
+        binding.btnLogout.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Konfirmasi")
+                .setMessage("Apakah Anda yakin ingin Keluar?")
+                .setPositiveButton("Ya") { dialog, _ ->
+
+                    sharedPref.edit {
+                        clear()
+                    }
+                    dialog.dismiss()
+
+                    val intent = Intent(this, AuthActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+
+
+
+                .setNegativeButton("Batal") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 }
