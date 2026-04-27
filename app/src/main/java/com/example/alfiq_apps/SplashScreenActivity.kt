@@ -29,7 +29,7 @@ class SplashScreenActivity : AppCompatActivity() {
         val isLogin = sharedPref.getBoolean("isLogin", false)
         if (isLogin) {
             //Panggil Intent untuk ke MainActivity
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, BaseActivity::class.java)
             startActivity(intent)
 
             finish() //kill Auth Activity
@@ -38,7 +38,7 @@ class SplashScreenActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(2000) //simulasi pengambilan data selama 2 detik
 
-            var intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+            var intent = Intent(this@SplashScreenActivity, BaseActivity::class.java)
             startActivity(intent)
             finish()
         }

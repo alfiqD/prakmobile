@@ -1,7 +1,11 @@
-package com.example.alfiq_apps.pertemuan_5
+package com.example.alfiq_apps.Home.pertemuan_5
 
+import android.R
 import android.os.Bundle
 import android.view.MenuItem // <--- TAMBAHAN IMPORT INI PENTING
+import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,13 +41,13 @@ class WebViewActivity : AppCompatActivity() {
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.javaScriptEnabled = true
 
-        binding.webView.webChromeClient = object : android.webkit.WebChromeClient() {
-            override fun onProgressChanged(view: android.webkit.WebView?, newProgress: Int) {
+        binding.webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 binding.progressBar.progress = newProgress
                 if (newProgress == 100) {
-                    binding.progressBar.visibility = android.view.View.GONE
+                    binding.progressBar.visibility = View.GONE
                 } else {
-                    binding.progressBar.visibility = android.view.View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         }
@@ -65,7 +69,7 @@ class WebViewActivity : AppCompatActivity() {
     // ========================================================
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> {
+            R.id.home -> {
                 finish() // Menutup halaman WebView dan kembali ke halaman sebelumnya
                 true
             }

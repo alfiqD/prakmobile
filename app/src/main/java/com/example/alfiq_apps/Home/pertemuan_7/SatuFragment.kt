@@ -1,4 +1,4 @@
-package com.example.alfiq_apps.pertemuan_7
+package com.example.alfiq_apps.Home.pertemuan_7
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

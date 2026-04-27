@@ -1,6 +1,7 @@
-package com.example.alfiq_apps.pertemuan_5
+package com.example.alfiq_apps.Home.pertemuan_5
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -71,10 +72,10 @@ class FifthActivity : AppCompatActivity() {
 
             if (isLiked) {
                 // Jika diklik: Warnai Vector menjadi KUNING EMAS
-                binding.btnFavorite.setColorFilter(android.graphics.Color.parseColor("#FFD700"))
+                binding.btnFavorite.setColorFilter(Color.parseColor("#FFD700"))
             } else {
                 // Jika batal: Kembalikan warna Vector menjadi ABU-ABU
-                binding.btnFavorite.setColorFilter(android.graphics.Color.DKGRAY)
+                binding.btnFavorite.setColorFilter(Color.DKGRAY)
             }
         }
         // ========================================================

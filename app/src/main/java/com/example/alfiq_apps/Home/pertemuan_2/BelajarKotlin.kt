@@ -1,4 +1,4 @@
-package com.example.alfiq_apps.pertemuan_2
+package com.example.alfiq_apps.Home.pertemuan_2
 
 fun main () {
     println("hai rekan-rekan....")

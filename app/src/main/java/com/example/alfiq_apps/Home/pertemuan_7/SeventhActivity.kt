@@ -1,6 +1,5 @@
-package com.example.alfiq_apps.pertemuan_7
+package com.example.alfiq_apps.Home.pertemuan_7
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -9,7 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.alfiq_apps.R
-import com.example.alfiq_apps.databinding.ActivityAuth2Binding
 import com.example.alfiq_apps.databinding.ActivitySeventhBinding
 
 class SeventhActivity : AppCompatActivity() {

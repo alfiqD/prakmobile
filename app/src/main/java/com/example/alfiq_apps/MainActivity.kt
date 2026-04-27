@@ -2,21 +2,18 @@ package com.example.alfiq_apps
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.alfiq_apps.databinding.ActivityFourthBinding
 import com.example.alfiq_apps.databinding.ActivityMainBinding
-import com.example.alfiq_apps.databinding.ActivityThirdBinding
-import com.example.alfiq_apps.pertemuan_4.FourthActivity
+import com.example.alfiq_apps.Home.pertemuan_4.FourthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.core.content.edit
-import com.example.alfiq_apps.pertemuan_2.SecondActivity
-import com.example.alfiq_apps.pertemuan_3.ThirdActivity
-import com.example.alfiq_apps.pertemuan_5.FifthActivity
-import com.example.alfiq_apps.pertemuan_7.SeventhActivity
+import com.example.alfiq_apps.Home.pertemuan_2.SecondActivity
+import com.example.alfiq_apps.Home.pertemuan_3.ThirdActivity
+import com.example.alfiq_apps.Home.pertemuan_5.FifthActivity
+import com.example.alfiq_apps.Home.pertemuan_7.SeventhActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
         //Kode ini harus selalu dipanggil saat butuh akses "user_pref"

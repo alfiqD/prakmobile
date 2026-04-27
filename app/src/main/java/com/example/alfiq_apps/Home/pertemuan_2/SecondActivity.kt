@@ -1,54 +1,47 @@
-package com.example.alfiq_apps.pertemuan_3
+package com.example.alfiq_apps.Home.pertemuan_2
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.alfiq_apps.R
-import com.example.alfiq_apps.databinding.ActivityThirdBinding
+import com.example.alfiq_apps.databinding.ActivitySecondBinding
 
-class ThirdActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityThirdBinding
+class SecondActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityThirdBinding.inflate(layoutInflater)
+
+        // Inisialisasi View Binding
+        binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Mengatur padding agar tidak tertutup sistem (status bar/navigasi)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        val btnKirim: Button = findViewById(R.id.btnKirim)
-//        val noTujuan: EditText = findViewById(R.id.inputNoTujuan)
 
-        binding.btnKirim.setOnClickListener {
-            val nomor = binding.inputNoTujuan.text
-            Toast.makeText(this, "Pesan Berhasil Dikirim Ke $nomor", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, ThirdResultActivity::class.java)
-            startActivity(intent)
-        }
-
+        // --- KONFIGURASI TOOLBAR (Sesuai Modul) ---
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Activity Third"
+            title = "Activity Second"
             subtitle = "Ini adalah subtitle"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
     }
 
+    // --- FUNGSI AGAR TOMBOL BACK BISA DIKLIK ---
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
+                // Kembali ke halaman sebelumnya (Stack Activity)
                 onBackPressedDispatcher.onBackPressed()
                 true
             }

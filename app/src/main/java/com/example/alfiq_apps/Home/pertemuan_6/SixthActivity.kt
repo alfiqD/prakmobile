@@ -1,4 +1,4 @@
-package com.example.alfiq_apps.pertemuan_6
+package com.example.alfiq_apps.Home.pertemuan_6
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

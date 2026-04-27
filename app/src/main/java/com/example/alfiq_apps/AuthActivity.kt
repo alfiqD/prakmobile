@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.alfiq_apps.databinding.ActivityAuth2Binding
-import com.example.alfiq_apps.pertemuan_3.ThirdResultActivity
+//import com.example.alfiq_apps.pertemuan_3.ThirdResultActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.core.content.edit
 
@@ -45,7 +45,7 @@ class AuthActivity : AppCompatActivity() {
                     putString("username", username)
                 }
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, BaseActivity::class.java)
                 startActivity(intent)
                 finish() // Opsional: Tutup AuthActivity agar tidak bisa kembali dengan tombol back
             } else {

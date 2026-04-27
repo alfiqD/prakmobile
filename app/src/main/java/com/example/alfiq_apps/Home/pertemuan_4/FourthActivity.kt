@@ -1,4 +1,4 @@
-package com.example.alfiq_apps.pertemuan_4
+package com.example.alfiq_apps.Home.pertemuan_4
 
 import android.content.Intent
 import android.os.Bundle
