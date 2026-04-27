@@ -13,6 +13,10 @@ import com.example.alfiq_apps.databinding.ActivityThirdBinding
 import com.example.alfiq_apps.pertemuan_4.FourthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.core.content.edit
+import com.example.alfiq_apps.pertemuan_2.SecondActivity
+import com.example.alfiq_apps.pertemuan_3.ThirdActivity
+import com.example.alfiq_apps.pertemuan_5.FifthActivity
+import com.example.alfiq_apps.pertemuan_7.SeventhActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,6 +65,31 @@ class MainActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
+        }
+        binding.btnToSecond.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToThird.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToFourth.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, FourthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToFifth.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, FifthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToSeventh.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(this, SeventhActivity::class.java)
+            startActivity(intent)
         }
     }
 }
