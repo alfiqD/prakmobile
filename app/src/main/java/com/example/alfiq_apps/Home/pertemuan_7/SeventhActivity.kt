@@ -14,35 +14,35 @@ class SeventhActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySeventhBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivitySeventhBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Menampilkan fragment pertama secara default jika ini pertama kali activity dibuat
+        // PERBAIKAN 1: Menampilkan fragment pertama TANPA addToBackStack
         if (savedInstanceState == null) {
+            replaceFragment(SatuFragment(), false)
+        }
+
+        // Setup event click untuk mengganti fragment
+        binding.btnFragment1.setOnClickListener {
             replaceFragment(SatuFragment())
         }
 
-            // Setup event click untuk mengganti fragment
-            binding.btnFragment1.setOnClickListener {
-                replaceFragment(SatuFragment())
-            }
+        binding.btnFragment2.setOnClickListener {
+            replaceFragment(DuaFragment())
+        }
 
-            binding.btnFragment2.setOnClickListener {
-                replaceFragment(DuaFragment())
-            }
-
-            binding.btnFragment3.setOnClickListener {
-                replaceFragment(TigaFragment())
-            }
+        binding.btnFragment3.setOnClickListener {
+            replaceFragment(TigaFragment())
+        }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
@@ -52,17 +52,28 @@ class SeventhActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
+    // PERBAIKAN 2: Menambahkan parameter addToStack dengan default value 'true'
+    private fun replaceFragment(fragment: Fragment, addToStack: Boolean = true) {
+        val transaction = supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)
-            .addToBackStack(null)
-            .commit()
+
+        // Hanya tambahkan ke BackStack jika addToStack bernilai true
+        if (addToStack) {
+            transaction.addToBackStack(null)
+        }
+
+        transaction.commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                finish() // Menutup halaman WebView dan kembali ke halaman sebelumnya
+                // Jika masih ada tumpukan fragment, keluarkan dulu (pop)
+                if (supportFragmentManager.backStackEntryCount > 0) {
+                    supportFragmentManager.popBackStack()
+                } else {
+                    finish() // Jika sudah di fragment pertama, tutup activity
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
