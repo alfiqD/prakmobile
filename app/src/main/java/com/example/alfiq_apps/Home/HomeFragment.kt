@@ -15,6 +15,7 @@ import com.example.alfiq_apps.Home.pertemuan_3.ThirdActivity
 import com.example.alfiq_apps.Home.pertemuan_4.FourthActivity
 import com.example.alfiq_apps.Home.pertemuan_5.FifthActivity
 import com.example.alfiq_apps.Home.pertemuan_7.SeventhActivity
+import com.example.alfiq_apps.Home.pertemuan_9.NinthActivity
 import com.example.alfiq_apps.R
 import com.example.alfiq_apps.databinding.FragmentHomeBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -86,6 +87,11 @@ class HomeFragment : Fragment() {
         binding.btnToSeventh.setOnClickListener {
             // Berpindah dari FifthActivity ke WebViewActivity
             val intent = Intent(requireContext(), SeventhActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToNinth.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(requireContext(), NinthActivity::class.java)
             startActivity(intent)
         }
 
