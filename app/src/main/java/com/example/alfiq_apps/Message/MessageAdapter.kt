@@ -15,29 +15,37 @@ class MessageAdapter(
 ) : ArrayAdapter<MessageModel>(context, 0, messages) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ItemMessageBinding = if (convertView == null) {
-            ItemMessageBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding: ItemMessageBinding
+        val itemView: View
+
+        if (convertView == null) {
+            binding = ItemMessageBinding.inflate(LayoutInflater.from(context), parent, false)
+            itemView = binding.root
+            itemView.tag = binding
         } else {
-            ItemMessageBinding.bind(convertView)
+            binding = convertView.tag as ItemMessageBinding
+            itemView = convertView
         }
-        val view = binding.root
 
         val data = messages[position]
 
+        // Glide bisa memuat URL (String) maupun Drawable (Int) jika menggunakan Any
         Glide.with(context)
-            .load(data.avatarUrl)
+            .load(data.avatar)
+            .circleCrop()
             .into(binding.avatarImg)
 
         binding.textSender.text = data.senderName
         binding.textMessage.text = data.messageText
 
-        view.setOnClickListener {
+        itemView.setOnClickListener {
             Snackbar.make(
                 parent,
                 "Pesan dari ${data.senderName}: ${data.messageText}",
                 Snackbar.LENGTH_SHORT
             ).show()
         }
-        return view
+
+        return itemView
     }
 }
