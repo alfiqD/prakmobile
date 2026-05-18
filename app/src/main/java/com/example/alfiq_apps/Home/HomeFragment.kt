@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.alfiq_apps.AuthActivity
+import com.example.alfiq_apps.Home.pertemuan_10.TenthActivity
 import com.example.alfiq_apps.Home.pertemuan_2.SecondActivity
 import com.example.alfiq_apps.Home.pertemuan_3.ThirdActivity
 import com.example.alfiq_apps.Home.pertemuan_4.FourthActivity
@@ -92,6 +93,11 @@ class HomeFragment : Fragment() {
         binding.btnToNinth.setOnClickListener {
             // Berpindah dari FifthActivity ke WebViewActivity
             val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToTenth.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(requireContext(), TenthActivity::class.java)
             startActivity(intent)
         }
 
