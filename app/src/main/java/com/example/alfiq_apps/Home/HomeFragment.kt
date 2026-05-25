@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
 import com.example.alfiq_apps.AuthActivity
 import com.example.alfiq_apps.Home.pertemuan_10.TenthActivity
 import com.example.alfiq_apps.Home.pertemuan_2.SecondActivity
@@ -18,8 +20,10 @@ import com.example.alfiq_apps.Home.pertemuan_5.FifthActivity
 import com.example.alfiq_apps.Home.pertemuan_7.SeventhActivity
 import com.example.alfiq_apps.Home.pertemuan_9.NinthActivity
 import com.example.alfiq_apps.R
+import com.example.alfiq_apps.data.api.CatFactApiClient
 import com.example.alfiq_apps.databinding.FragmentHomeBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -42,6 +46,7 @@ class HomeFragment : Fragment() {
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             title = "Home"
+
         }
 
         binding.btnLogout.setOnClickListener {
@@ -101,7 +106,26 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.btnRefresh.setOnClickListener {
+            loadCatFact()
+        }
+
+
     }
 
+    private fun loadCatFact() {
+        lifecycleScope.launch {
+            try {
+                val response = CatFactApiClient.apiService.getCatFact()
+                binding.tvCatFact.text = "\"${response.fact}\""
+            } catch (e: Exception) {
+                binding.tvCatFact.text = "Gagal mengambil fakta kucing."
+            }
+        }
+    }
 
 }
+
+
+
+
