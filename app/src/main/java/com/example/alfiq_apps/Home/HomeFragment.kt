@@ -13,6 +13,7 @@ import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.example.alfiq_apps.AuthActivity
 import com.example.alfiq_apps.Home.pertemuan_10.TenthActivity
+import com.example.alfiq_apps.Home.pertemuan_13.ThirteenthActivity
 import com.example.alfiq_apps.Home.pertemuan_2.SecondActivity
 import com.example.alfiq_apps.Home.pertemuan_3.ThirdActivity
 import com.example.alfiq_apps.Home.pertemuan_4.FourthActivity
@@ -106,7 +107,13 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.btnRefresh.setOnClickListener {
+        binding.btnToThirteenth.setOnClickListener {
+            // Berpindah dari FifthActivity ke WebViewActivity
+            val intent = Intent(requireContext(), ThirteenthActivity::class.java)
+            startActivity(intent)
+        }
+
+            binding.btnRefresh.setOnClickListener {
             loadCatFact()
         }
 
