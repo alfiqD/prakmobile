@@ -17,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.alfiq_apps.R
 import com.example.alfiq_apps.databinding.FragmentTabScanBinding
+import com.example.alfiq_apps.utils.PermissionHelper
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
@@ -62,12 +63,18 @@ class TabScanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        if (hasCameraPermission()) {
-            startCamera()
+        if (!PermissionHelper.hasPermission(
+                requireActivity(),
+                Manifest.permission.CAMERA)) {
+            PermissionHelper.requestPermission(
+                permissionLauncher,
+                Manifest.permission.CAMERA
+            )
         } else {
-            permissionLauncher.launch(Manifest.permission.CAMERA)
+            startCamera()
         }
     }
+
 
     // Hapus binding & matikan scanner saat view dihancurkan untuk mencegah memory leak
     override fun onDestroyView() {
@@ -77,12 +84,7 @@ class TabScanFragment : Fragment() {
         cameraExecutor.shutdown()
     }
 
-    private fun hasCameraPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-    }
+
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
